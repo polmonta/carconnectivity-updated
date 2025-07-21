@@ -19,6 +19,8 @@ ARG CC_VERSION
 COPY rootfs /
 WORKDIR /tmp/
 
+COPY carconnectivity_connector_volkswagen-0.8.1-py3-none-any.whl .
+
 RUN echo "ADDON_VERSION=v${BUILD_VERSION}" >> versions.txt && \
     apk add --no-cache curl nginx py3-pip build-base libffi-dev && \
     python3 -m venv /opt/venv && \
