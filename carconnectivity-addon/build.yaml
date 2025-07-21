@@ -11,7 +11,7 @@ labels:
 
 args:
   NGINX_VERSION: "1.26.3"
-  SEAT_VERSION: "v0.4.5"
+  SEAT_VERSION: "v0.4.4"
   SKODA_VERSION: "v0.8"
   VW_VERSION: "v0.1.dev0"
   TRONITY_VERSION: "v0.6.3"
