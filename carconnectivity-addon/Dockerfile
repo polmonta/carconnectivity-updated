@@ -25,7 +25,9 @@ RUN echo "ADDON_VERSION=v${BUILD_VERSION}" >> versions.txt && \
     /opt/venv/bin/pip install --no-cache-dir --upgrade pip &&     /opt/venv/bin/pip install --no-cache-dir \
         carconnectivity==${CC_VERSION} \
         carconnectivity-connector-seatcupra==${SEAT_VERSION} \
-        carconnectivity-connector-skoda==${SKODA_VERSION}         ./carconnectivity_connector_volkswagen-0.1.dev0+d20250721-py3-none-any.whl         carconnectivity-connector-tronity==${TRONITY_VERSION}
+        carconnectivity-connector-skoda==${SKODA_VERSION} \
+        ./carconnectivity_connector_volkswagen-0.8.1-py3-none-any.whl \
+        carconnectivity-connector-tronity==${TRONITY_VERSION} \
         carconnectivity-plugin-abrp==${ABRP_VERSION} \
         carconnectivity-plugin-webui==${WEBUI_VERSION} \
         carconnectivity-plugin-mqtt_homeassistant==${MQTTHA_VERSION} && \
