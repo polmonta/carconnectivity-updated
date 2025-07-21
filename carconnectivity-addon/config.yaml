@@ -2,7 +2,7 @@ name: "CarConnectivity Add-on TESTING"
 version: 0.3.6
 slug: "carconnectivity-addon"
 description: "v1.0.4"
-image: "docker.io/pulpyyyy/carconnectivity-addon-{arch}"
+
 panel_icon: "mdi:car-wireless"
 map:
   - addon_config:rw
