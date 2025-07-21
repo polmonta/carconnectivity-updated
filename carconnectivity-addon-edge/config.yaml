@@ -1,0 +1,78 @@
+name: "CarConnectivity Add-on Edge"
+version: 0.3.6
+slug: "carconnectivity-addon-edge"
+description: "⚠️EDGE VERSION⚠️  of CarConnectivity Add-on based on Till's project (https://github.com/tillsteinbach/CarConnectivity). May be unstable. MQTT required."
+image: "docker.io/pulpyyyy/carconnectivity-addon-edge-{arch}"
+panel_icon: "mdi:car-wireless"
+map:
+  - addon_config:rw
+arch:
+  - aarch64
+  - amd64
+ingress: true
+init: false
+hassio_api: true
+hassio_role: homeassistant
+homeassistant_api: true
+options:
+  connector_type_brand1: "seat"
+  connector_username_brand1: ""
+  connector_password_brand1: "password"
+  connector_spin_brand1: "1234"
+  connector_interval_brand1: 600
+  connector_type_brand2: "skoda"
+  connector_username_brand2: ""
+  connector_password_brand2: "password"
+  connector_spin_brand2: "1234"
+  connector_interval_brand2: 600
+  separator_volvo: "volvo"
+  connector_volvo_key_primary: ""
+  connector_volvo_key_secondary: ""
+  connected_volvo_vehicle_token: ""
+  connector_volvo_location_token: ""
+  connector_volvo_interval: 600
+  separator_mqtt: "MQTT"
+  mqtt_username: ""
+  mqtt_password: ""
+  mqtt_broker: "core-mosquitto.local.hass.io"
+  mqtt_port: 1883
+  connector_enabler_webui: true
+  connector_username_webui: "admin"
+  connector_password_webui: "secret"
+  connector_enabler_abrp: false
+  connector_abrp_tokens: []
+  log_level: "info"
+  api_log_level: "info"
+  expert: false
+schema:
+  connector_type_brand1: list(seat|cupra|skoda|volkswagen|trionity)
+  connector_username_brand1: match(^$|^[\w\-\.\+]+@([\w-]+\.)+[\w-]{2,}$)
+  connector_password_brand1: password?
+  connector_interval_brand1: int(60,3600)?
+  connector_spin_brand1: match(^\d{4}$)?
+  connector_type_brand2: list(seat|cupra|skoda|volkswagen|trionity)
+  connector_username_brand2: match(^$|^[\w\-\.\+]+@([\w-]+\.)+[\w-]{2,}$)
+  connector_password_brand2: password?
+  connector_interval_brand2: int(60,3600)?
+  connector_spin_brand2: match(^\d{4}$)?
+  separator_volvo: list(volvo)
+  connector_volvo_key_primary: str?
+  connector_volvo_key_secondary: str?
+  connected_volvo_vehicle_token: str?
+  connector_volvo_location_token: str?
+  connector_volvo_interval: int(60,3600)?
+  separator_mqtt: list(MQTT)
+  mqtt_username: str?
+  mqtt_password: password?
+  mqtt_broker: str
+  mqtt_port: int
+  connector_enabler_webui: bool
+  connector_username_webui: str?
+  connector_password_webui: password?
+  connector_enabler_abrp: bool
+  connector_abrp_tokens:
+    - vin: str
+      token: str
+  log_level: list(info|warning|error|debug)
+  api_log_level: list(info|warning|error|debug)
+  expert: bool

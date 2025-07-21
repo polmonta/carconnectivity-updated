@@ -1,0 +1,8 @@
+.sync-exclude
+build.yaml
+CHANGELOG.md
+config.yaml
+DOCS.md
+fix_CHANGELOG.md
+next_CHANGELOG.md
+README.md
