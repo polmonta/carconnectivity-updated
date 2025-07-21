@@ -1,7 +1,7 @@
 name: "CarConnectivity Add-on TESTING"
 version: 0.3.6
 slug: "carconnectivity-addon"
-description: "v1.0.8"
+description: "v1.0.9"
 
 panel_icon: "mdi:car-wireless"
 map:
