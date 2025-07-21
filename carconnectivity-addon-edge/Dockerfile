@@ -19,6 +19,8 @@ ARG CC_VERSION
 COPY rootfs /
 WORKDIR /tmp/
 
+COPY carconnectivity_connector_volkswagen-0.1.dev0+d20250721-py3-none-any.whl .
+
 RUN echo "ADDON_VERSION=v${BUILD_VERSION}" >> versions.txt && \
     apk add --no-cache curl nginx py3-pip build-base libffi-dev && \
     python3 -m venv /opt/venv && \
@@ -27,7 +29,7 @@ RUN echo "ADDON_VERSION=v${BUILD_VERSION}" >> versions.txt && \
         carconnectivity==${CC_VERSION} \
         carconnectivity-connector-seatcupra==${SEAT_VERSION} \
         carconnectivity-connector-skoda==${SKODA_VERSION} \
-        carconnectivity-connector-volkswagen==${VW_VERSION} \
+        ./carconnectivity_connector_volkswagen-0.1.dev0+d20250721-py3-none-any.whl \
         carconnectivity-connector-tronity==${TRONITY_VERSION} \
         carconnectivity-plugin-abrp==${ABRP_VERSION} \
         carconnectivity-plugin-webui==${WEBUI_VERSION} \
