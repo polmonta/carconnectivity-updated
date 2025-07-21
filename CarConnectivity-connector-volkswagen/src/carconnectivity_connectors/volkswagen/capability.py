@@ -134,4 +134,5 @@ class Capability(GenericObject):
         CONSENT_MISSING = 3004
         LIMITED_FEATURE = 3005
         AUTH_APP_CERT_ERROR = 3006
+        UNKNOWN_1014 = 1014
         STATUS_UNSUPPORTED = 4001

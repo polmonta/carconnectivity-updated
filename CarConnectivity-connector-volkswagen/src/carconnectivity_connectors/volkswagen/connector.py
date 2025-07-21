@@ -485,10 +485,10 @@ class Connector(BaseConnector):
         url = f'https://emea.bff.cariad.digital/vehicle/v1/vehicles/{vin}/selectivestatus?jobs=' + ','.join(jobs)
         data: Dict[str, Any] | None = self._fetch_data(url, self.session)
         if data is not None:
-            if 'fuelStatus' in data and data['fuelStatus'] is not None:
-                if 'rangeStatus' in data['fuelStatus'] and data['fuelStatus']['rangeStatus'] is not None:
-                    if 'value' in data['fuelStatus']['rangeStatus'] and data['fuelStatus']['rangeStatus']['value'] is not None:
-                        range_status = data['fuelStatus']['rangeStatus']['value']
+            if 'measurements' in data and data['measurements'] is not None:
+                if 'rangeStatus' in data['measurements'] and data['measurements']['rangeStatus'] is not None:
+                    if 'value' in data['measurements']['rangeStatus'] and data['measurements']['rangeStatus']['value'] is not None:
+                        range_status = data['measurements']['rangeStatus']['value']
                         if 'carCapturedTimestamp' not in range_status or range_status['carCapturedTimestamp'] is None:
                             raise APIError('Could not fetch vehicle status, carCapturedTimestamp missing')
                         captured_at: datetime = robust_time_parse(range_status['carCapturedTimestamp'])
@@ -552,12 +552,6 @@ class Connector(BaseConnector):
                         log_extra_keys(LOG_API, 'rangeStatus', range_status, {'carCapturedTimestamp', 'primaryEngine', 'secondaryEngine', 'totalRange_km'})
                     else:
                         vehicle.drives.enabled = False
-                else:
-                    vehicle.drives.enabled = False
-            else:
-                vehicle.drives.enabled = False
-
-            if 'measurements' in data and data['measurements'] is not None:
                 if 'fuelLevelStatus' in data['measurements'] and data['measurements']['fuelLevelStatus'] is not None:
                     if 'value' in data['measurements']['fuelLevelStatus'] and data['measurements']['fuelLevelStatus']['value'] is not None:
                         fuel_level_status = data['measurements']['fuelLevelStatus']['value']
@@ -654,7 +648,7 @@ class Connector(BaseConnector):
                                 log_extra_keys(LOG_API, 'temperatureBatteryStatus', temperature_battery_status, {'carCapturedTimestamp',
                                                                                                                  'temperatureHvBatteryMin_K',
                                                                                                                  'temperatureHvBatteryMax_K'})
-                log_extra_keys(LOG_API, 'measurements', data['measurements'], {'fuelLevelStatus', 'odometerStatus', 'temperatureOutsideStatus',
+                log_extra_keys(LOG_API, 'measurements', data['measurements'], {'rangeStatus', 'fuelLevelStatus', 'odometerStatus', 'temperatureOutsideStatus',
                                                                                'temperatureBatteryStatus'})
             else:
                 vehicle.odometer._set_value(None)  # pylint: disable=protected-access
