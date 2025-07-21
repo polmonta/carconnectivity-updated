@@ -574,8 +574,8 @@ class Connector(BaseConnector):
                                                   GenericVehicle.Type.GASOLINE,
                                                   GenericVehicle.Type.PETROL,
                                                   GenericVehicle.Type.DIESEL,
-                                                  GenericVehicle.Type.CNG,
-                                                  GenericVehicle.Type.LPG] \
+                                                  GenericDrive.Type.CNG,
+                                                  GenericDrive.Type.LPG] \
                                         and not isinstance(vehicle, VolkswagenCombustionVehicle):
                                     LOG.debug('Promoting %s to VolkswagenCombustionVehicle object for %s', vehicle.__class__.__name__, vin)
                                     vehicle = VolkswagenCombustionVehicle(origin=vehicle)
@@ -587,7 +587,6 @@ class Connector(BaseConnector):
                                 vehicle.type._set_value(car_type)  # pylint: disable=protected-access
                             except ValueError:
                                 LOG_API.warning('Unknown car type %s', fuel_level_status['carType'])
-
                         if 'currentSOC_pct' in fuel_level_status and fuel_level_status['currentSOC_pct'] is not None:
                             if isinstance(vehicle, VolkswagenElectricVehicle):
                                 electric_drive: Optional[ElectricDrive] = vehicle.get_electric_drive()
